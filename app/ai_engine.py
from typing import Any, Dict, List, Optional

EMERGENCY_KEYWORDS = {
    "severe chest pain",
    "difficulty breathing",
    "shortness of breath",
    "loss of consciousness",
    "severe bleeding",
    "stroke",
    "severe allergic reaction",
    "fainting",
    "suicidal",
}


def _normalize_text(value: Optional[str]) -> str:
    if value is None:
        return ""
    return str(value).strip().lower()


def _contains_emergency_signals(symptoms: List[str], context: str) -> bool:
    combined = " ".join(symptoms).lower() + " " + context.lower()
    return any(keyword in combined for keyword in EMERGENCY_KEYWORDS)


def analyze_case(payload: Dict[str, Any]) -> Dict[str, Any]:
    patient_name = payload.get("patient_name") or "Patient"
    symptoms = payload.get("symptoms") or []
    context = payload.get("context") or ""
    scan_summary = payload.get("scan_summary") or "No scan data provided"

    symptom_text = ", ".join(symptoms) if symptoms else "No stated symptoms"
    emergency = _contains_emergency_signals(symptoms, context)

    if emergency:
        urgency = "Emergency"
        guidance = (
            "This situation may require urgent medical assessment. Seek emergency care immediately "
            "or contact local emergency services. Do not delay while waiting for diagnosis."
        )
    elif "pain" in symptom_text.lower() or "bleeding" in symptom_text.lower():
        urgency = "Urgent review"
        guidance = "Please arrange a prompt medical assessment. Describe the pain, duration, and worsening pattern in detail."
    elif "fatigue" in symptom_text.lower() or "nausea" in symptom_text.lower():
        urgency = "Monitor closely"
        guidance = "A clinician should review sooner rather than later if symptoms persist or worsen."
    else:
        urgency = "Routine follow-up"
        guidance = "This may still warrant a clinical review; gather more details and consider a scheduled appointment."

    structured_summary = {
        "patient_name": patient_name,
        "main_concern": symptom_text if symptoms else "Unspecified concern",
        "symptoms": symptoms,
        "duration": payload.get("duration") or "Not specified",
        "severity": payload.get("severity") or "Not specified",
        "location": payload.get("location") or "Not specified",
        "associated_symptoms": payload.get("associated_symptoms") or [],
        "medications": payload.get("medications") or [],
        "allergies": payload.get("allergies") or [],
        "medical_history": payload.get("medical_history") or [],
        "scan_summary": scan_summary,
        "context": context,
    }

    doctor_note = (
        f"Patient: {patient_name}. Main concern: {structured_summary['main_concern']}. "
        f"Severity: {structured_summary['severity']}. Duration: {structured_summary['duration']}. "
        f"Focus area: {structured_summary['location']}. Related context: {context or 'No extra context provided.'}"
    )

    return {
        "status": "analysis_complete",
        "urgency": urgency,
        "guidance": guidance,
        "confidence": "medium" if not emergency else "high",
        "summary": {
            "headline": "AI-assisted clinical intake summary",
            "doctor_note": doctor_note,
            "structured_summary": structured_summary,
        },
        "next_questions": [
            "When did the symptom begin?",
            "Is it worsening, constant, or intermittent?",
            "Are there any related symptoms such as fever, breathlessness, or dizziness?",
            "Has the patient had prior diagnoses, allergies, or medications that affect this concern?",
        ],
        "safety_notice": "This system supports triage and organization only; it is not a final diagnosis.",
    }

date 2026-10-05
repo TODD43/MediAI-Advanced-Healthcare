@@ -1,0 +1,70 @@
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
+from typing import List, Optional, Dict, Any
+from pathlib import Path
+
+from app.ai_engine import analyze_case
+from app.voice_agent import SYSTEM_PROMPT, build_voice_intro
+
+app = FastAPI(title="MediAI Advanced Healthcare", version="1.0.0")
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_DIR = BASE_DIR / "static"
+
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+
+
+class AnalyzeRequest(BaseModel):
+    patient_name: Optional[str] = None
+    age: Optional[int] = None
+    symptoms: Optional[List[str]] = None
+    duration: Optional[str] = None
+    severity: Optional[str] = None
+    location: Optional[str] = None
+    associated_symptoms: Optional[List[str]] = None
+    medications: Optional[List[str]] = None
+    allergies: Optional[List[str]] = None
+    medical_history: Optional[List[str]] = None
+    scan_summary: Optional[str] = None
+    context: Optional[str] = None
+
+
+@app.get("/api/health")
+def health() -> Dict[str, Any]:
+    return {
+        "status": "online",
+        "service": "MediAI Advanced Healthcare",
+        "mode": "AI-assisted clinical intake and triage prototype",
+    }
+
+
+@app.post("/api/analyze")
+def analyze(request: AnalyzeRequest) -> Dict[str, Any]:
+    payload = request.model_dump(exclude_none=True)
+    result = analyze_case(payload)
+    return result
+
+
+@app.get("/api/voice-session")
+def voice_session() -> Dict[str, Any]:
+    return {
+        "voice_name": "MediAI Care Assistant",
+        "greeting": build_voice_intro(),
+        "system_prompt": SYSTEM_PROMPT,
+    }
+
+
+@app.get("/")
+def index():
+    index_file = STATIC_DIR / "index.html"
+    if index_file.exists():
+        return index_file.read_text(encoding="utf-8")
+    return {"message": "Frontend not found. Add static/index.html"}
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

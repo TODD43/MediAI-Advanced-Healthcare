@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediAI Advanced Healthcare</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-box">
+          <div class="brand-mark">M</div>
+          <div>
+            <div class="brand-title">MediAI</div>
+            <div class="brand-subtitle">Advanced healthcare AI</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item active">Overview</button>
+          <button class="nav-item">Patient intake</button>
+          <button class="nav-item">Scan review</button>
+          <button class="nav-item">3D anatomy</button>
+          <button class="nav-item">Safety</button>
+        </nav>
+
+        <div class="side-card">
+          <div class="side-card-title">AI safety</div>
+          <p>
+            Clinical assistance is advisory only and must be reviewed by licensed healthcare professionals.
+          </p>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Healthcare intelligence platform</p>
+            <h1>Clinical intake + AI triage</h1>
+          </div>
+          <div class="status-pill online">System online</div>
+        </header>
+
+        <section class="hero-grid">
+          <div class="card large-card">
+            <div class="section-title-row">
+              <h2>Patient assessment</h2>
+              <button id="runAnalysis" class="primary-btn">Analyze</button>
+            </div>
+
+            <div class="form-grid">
+              <label>
+                Patient name
+                <input id="patientName" value="Jane Doe" />
+              </label>
+              <label>
+                Age
+                <input id="age" type="number" value="42" />
+              </label>
+              <label>
+                Severity
+                <input id="severity" value="Moderate" />
+              </label>
+              <label>
+                Duration
+                <input id="duration" value="2 days" />
+              </label>
+              <label>
+                Main symptom
+                <input id="symptomInput" value="Chest pain" />
+              </label>
+              <label>
+                Location
+                <input id="location" value="Chest" />
+              </label>
+            </div>
+
+            <label class="full-width">
+              Symptoms
+              <input id="symptoms" value="Chest pain, shortness of breath" />
+            </label>
+
+            <label class="full-width">
+              Scan summary
+              <textarea id="scanSummary">Chest CT indicates possible pulmonary concern requiring clinical confirmation.</textarea>
+            </label>
+
+            <label class="full-width">
+              Clinical context
+              <textarea id="context">Pain increases while walking and is associated with dizziness.</textarea>
+            </label>
+          </div>
+
+          <div class="card right-card">
+            <div class="scan-viewer">
+              <div class="scan-header">3D anatomy preview</div>
+              <div class="scan-shape">
+                <div class="organ organ-core"></div>
+                <div class="organ organ-ring ring-one"></div>
+                <div class="organ organ-ring ring-two"></div>
+                <div class="organ organ-ring ring-three"></div>
+              </div>
+              <div class="scan-labels">
+                <span>CT</span>
+                <span>MRI</span>
+                <span>3D</span>
+              </div>
+            </div>
+            <div class="voice-box">
+              <div class="voice-text" id="voiceGreeting">
+                Hi, I’m MediAI. I can help you describe your symptoms clearly.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bottom-grid">
+          <div class="card">
+            <div class="section-title-row">
+              <h2>Structured summary</h2>
+            </div>
+            <div id="summaryBox" class="summary-box">
+              <p>Awaiting analysis...</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-title-row">
+              <h2>Suggested next steps</h2>
+            </div>
+            <ul id="nextSteps" class="step-list">
+              <li>Gather symptom timeline</li>
+              <li>Ask about worsening or associated symptoms</li>
+              <li>Review medications and allergies</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

@@ -1,3 +1,3 @@
-from .ai_engine import analyze_case
+from .main import app
 
-__all__ = ["analyze_case"]
+__all__ = ["app"]

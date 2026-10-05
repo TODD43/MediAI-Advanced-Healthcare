@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MEDI Doctor Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-shell">
+      <aside class="dashboard-sidebar">
+        <div class="dash-brand">
+          <div class="dash-mark">M</div>
+          <div>
+            <div class="dash-title">MEDI</div>
+            <div class="dash-subtitle">Doctor Portal</div>
+          </div>
+        </div>
+
+        <nav class="dash-nav">
+          <button class="dash-nav-item active" onclick="showSection('overview')">Overview</button>
+          <button class="dash-nav-item" onclick="showSection('sessions')">Sessions</button>
+          <button class="dash-nav-item" onclick="showSection('patients')">Patients</button>
+          <button class="dash-nav-item" onclick="showSection('analytics')">Analytics</button>
+        </nav>
+
+        <div class="dash-info">
+          <div class="info-label">Doctor Mode</div>
+          <p>Clinical review and patient record management for healthcare professionals.</p>
+        </div>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="dash-topbar">
+          <div>
+            <h1>Doctor Dashboard</h1>
+            <p class="subtitle">Real-time patient intake review and clinical management</p>
+          </div>
+          <div id="connectionIndicator" class="connection-status online">Connected</div>
+        </header>
+
+        <!-- Overview Section -->
+        <section id="overview" class="dash-section active">
+          <div class="section-title">System Overview</div>
+          <div class="overview-grid">
+            <div class="stat-card">
+              <div class="stat-value" id="totalSessions">0</div>
+              <div class="stat-label">Total Sessions</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="activeSessions">0</div>
+              <div class="stat-label">Active Now</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="totalPatients">0</div>
+              <div class="stat-label">Total Patients</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="closedSessions">0</div>
+              <div class="stat-label">Closed Sessions</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sessions Section -->
+        <section id="sessions" class="dash-section">
+          <div class="section-title">Patient Intake Sessions</div>
+          <div id="sessionsList" class="sessions-list">
+            <p>Loading sessions...</p>
+          </div>
+        </section>
+
+        <!-- Patients Section -->
+        <section id="patients" class="dash-section">
+          <div class="section-title">Patient Records</div>
+          <div id="patientsList" class="patients-list">
+            <p>Loading patients...</p>
+          </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="dash-section">
+          <div class="section-title">Analytics & Metrics</div>
+          <div id="analyticsSummary" class="analytics-box">
+            <p>Loading analytics...</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/dashboard.js"></script>
+  </body>
+</html>
